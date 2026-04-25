@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openenv-multi-agent-hyperlocal-catalog-ops"
+version = "0.1.0"
+description = "Multi-agent hyperlocal catalog operations environment for OpenEnv"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "openenv-core[core]>=0.2.2",
+    "pydantic>=2.7.0",
+    "fastapi>=0.110.0",
+    "uvicorn>=0.30.0",
+    "openai>=1.30.0",
+    "python-dotenv>=1.0.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.0.0",
+]
+train = [
+    "datasets>=2.19.0",
+    "transformers>=4.41.0",
+    "trl>=0.9.0",
+    "accelerate>=0.30.0",
+]
+
+[project.scripts]
+server = "multi_agent_hyperlocal_catalog_ops.server.app:main"
+
+[tool.setuptools]
+include-package-data = true
+packages = [
+    "multi_agent_hyperlocal_catalog_ops",
+    "multi_agent_hyperlocal_catalog_ops.server",
+]
+py-modules = [
+    "client",
+    "grader",
+    "inference",
+    "models",
+    "tasks",
+]
+
+[tool.setuptools.package-dir]
+"multi_agent_hyperlocal_catalog_ops" = "."
+"multi_agent_hyperlocal_catalog_ops.server" = "server"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
