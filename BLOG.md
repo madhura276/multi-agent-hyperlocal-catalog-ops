@@ -162,7 +162,7 @@ After post-training, the average benchmark score improved from **`0.3323`** to *
 - Hugging Face Space: [Multi-Agent Hyperlocal Catalog Ops](https://huggingface.co/spaces/MadhuraMadhu/multi-agent-hyperlocal-catalog-ops)
 - Live API Docs: [OpenEnv API](https://madhuramadhu-multi-agent-hyperlocal-catalog-ops.hf.space/docs)
 - Colab Notebook: [Training and Verification Notebook](https://colab.research.google.com/drive/1IFFnZra2TNEdUBgR-4ZEw98VaioViEA-#scrollTo=kP0NjNdZYlWM)
-- Code Repository: [Repository Link](PASTE_YOUR_GITHUB_OR_HF_REPO_LINK_HERE)
+- Code Repository: [Repository Link](https://github.com/madhura276/multi-agent-hyperlocal-catalog-ops)
 - YouTube Video: [Mini Video](https://youtu.be/aSo8J6MCYrc)
 - Presentation Slides: [PPT / Slide Deck](https://d.docs.live.net/4A4307F3E7662310/Desktop/Multi-Agent%20Hyperlocal%20Catalog%20Ops.pptx)
 - Trained Model Artifact: [oversight-sft-final](https://huggingface.co/spaces/MadhuraMadhu/multi-agent-hyperlocal-catalog-ops/tree/main/trained_models/oversight-sft-final)
