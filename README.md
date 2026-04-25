@@ -255,6 +255,7 @@ Select-Object -ExpandProperty Content
 
 ## Project Structure
 
+```text
 multi_agent_hyperlocal_catalog_ops/
 ├── __init__.py
 ├── client.py
@@ -284,7 +285,7 @@ multi_agent_hyperlocal_catalog_ops/
     ├── __init__.py
     ├── app.py
     └── environment.py
-
+```
 
 ## Why It Matters
 
