@@ -1,12 +1,16 @@
 # Multi-Agent Hyperlocal Catalog Ops
 
-Multi-Agent Hyperlocal Catalog Ops is an OpenEnv benchmark for quick-commerce inventory curation. It is designed for the Multi-Agent Interactions theme and models a realistic enterprise workflow where multiple specialized agents coordinate under oversight.
+Multi-Agent Hyperlocal Catalog Ops is an OpenEnv benchmark for quick-commerce inventory curation. It is designed for the **Multi-Agent Interactions** theme and models a realistic enterprise workflow where multiple specialized agents coordinate under oversight.
+
+## Summary
+
+This project targets a real capability gap in LLM systems: **safe multi-agent decision-making in structured business workflows**. It combines specialized agent roles, oversight-driven state updates, deterministic tasks, measurable rewards, and demonstrated post-training improvement on a realistic quick-commerce benchmark.
+
+After post-training, the benchmark score improved from **`0.3323`** to **`0.3761`**, showing a clear before-vs-after gain from training the `oversight_agent`.
 
 ## Problem
 
-This project targets a real capability gap in LLM systems: safe multi-agent decision-making in enterprise workflows.
-
-In hyperlocal quick-commerce, inventory data often comes from merchant uploads, POS exports, dark-store systems, and sync jobs. These records are noisy and inconsistent. Titles may be messy, duplicate records may exist, pricing can be wrong, and some cases are ambiguous.
+In hyperlocal quick-commerce, inventory data often comes from merchant uploads, POS exports, dark-store systems, and internal sync jobs. These records are noisy and inconsistent. Product titles may be messy, duplicate records may exist, pricing can be wrong, and some cases are ambiguous.
 
 These issues directly affect:
 - search quality
@@ -15,22 +19,32 @@ These issues directly affect:
 - pricing reliability
 - fulfillment
 
-The core question behind this environment is: can LLM agents learn to coordinate safely in a structured operational workflow instead of acting like a single generic assistant?
+In real operations, this work is not handled by one perfect operator. It is distributed across multiple roles such as catalog curators, deduplication specialists, pricing reviewers, and final approvers.
+
+The core question behind this benchmark is: **can LLM agents learn to coordinate safely in a structured operational workflow instead of behaving like a single generic assistant?**
 
 ## Environment
 
 The environment is built using OpenEnv and deployed as a Hugging Face Space.
 
-Each episode is a multi-agent inventory curation batch. The environment contains four specialized agents:
-- `curation_agent` for title, size, and category cleanup
-- `dedupe_agent` for duplicate detection and merge proposals
-- `pricing_agent` for price anomaly checks
-- `oversight_agent` for approving, rejecting, or escalating proposals
+Each episode is a multi-agent inventory curation batch. The system is designed around four specialized agents:
 
-The first three agents generate proposals. The `oversight_agent` reviews those proposals before shared state changes are applied.
+- `curation_agent`  
+  Cleans titles, standardizes size and unit information, and assigns categories.
 
-This creates a workflow where the model must do more than produce fluent text. It must:
-- act in steps
+- `dedupe_agent`  
+  Identifies duplicate records and proposes safe merges where appropriate.
+
+- `pricing_agent`  
+  Detects obvious pricing anomalies and proposes corrected values.
+
+- `oversight_agent`  
+  Reviews proposed actions and decides whether to approve, reject, or escalate them before shared state changes are applied.
+
+The first three agents propose actions. The `oversight_agent` controls whether those actions are allowed to affect the shared catalog state. This makes the environment not only collaborative, but also explicitly safety-aware.
+
+As a result, the model must do more than generate fluent text. It must:
+- act step by step
 - coordinate across roles
 - handle ambiguity
 - avoid unsafe decisions
@@ -53,9 +67,11 @@ The benchmark includes three deterministic tasks with increasing difficulty:
 - `medium_multistore_conflict`
 - `hard_ambiguous_oversight_batch`
 
-The easy task focuses on basic cleanup.  
+The easy task focuses on straightforward cleanup.  
 The medium task introduces duplicate and pricing conflicts.  
 The hard task emphasizes ambiguity, where escalation is often better than aggressive action.
+
+This progression makes the benchmark suitable for both evaluation and post-training.
 
 ## Reward Design
 
@@ -80,7 +96,7 @@ It penalizes:
 - poor oversight choices
 - premature finalization
 
-This makes the environment verifiable and suitable for post-training.
+This design makes the benchmark verifiable and reduces the chance that the model can succeed through superficial fluency alone.
 
 ## Training Setup
 
@@ -107,26 +123,26 @@ This improvement comes from replacing the heuristic `oversight_agent` with the t
 
 ![Training Loss](./outputs/plots/training_loss.png)
 
-Training loss decreases substantially during post-training, showing that the oversight model is learning from the supervision data rather than staying flat.
+Training loss decreases substantially during post-training, showing that the oversight model is learning from the supervision data rather than remaining flat.
 
 ### Mean Token Accuracy
 
 ![Mean Token Accuracy](./outputs/plots/token_accuracy.png)
 
-Mean token accuracy improves during the run, which supports the loss trend and indicates the model is fitting the training objective more effectively over time.
+Mean token accuracy improves during the run, which supports the loss trend and indicates that the model is fitting the training objective more effectively over time.
 
 ### Before vs After Benchmark Score
 
 ![Before vs After Score](./outputs/plots/score_comparison.png)
 
-The benchmark score improves from `0.3323` to `0.3761` after post-training, giving a clean before-vs-after comparison.
+The benchmark score improves from `0.3323` to `0.3761` after post-training, giving a clean before-vs-after comparison on the same environment.
 
 ## Before and After Summary
 
 ### Before Training
 - heuristic multi-agent baseline
 - average benchmark score: `0.3323`
-- baseline inference/evaluation output captured
+- baseline inference and evaluation output captured
 
 ### After Training
 - `oversight_agent` trained with HF TRL
@@ -150,12 +166,6 @@ That makes it useful not only for hackathon evaluation, but also as a benchmark 
 - oversight policies
 - ambiguity handling
 - safe enterprise decision-making
-
-## Summary
-
-This project targets safe multi-agent decision-making in a realistic enterprise workflow. It combines structured agent roles, oversight-driven state updates, measurable reward design, and post-training improvement on a deterministic benchmark.
-
-After post-training, the average benchmark score improved from **`0.3323`** to **`0.3761`**, showing a clear before-vs-after gain from training the `oversight_agent`.
 
 ## Links
 
