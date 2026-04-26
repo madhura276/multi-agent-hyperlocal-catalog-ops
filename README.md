@@ -36,7 +36,7 @@ After post-training, the benchmark score improved from **`0.3323`** to **`0.3761
 - Colab Notebook: [Training and Verification Notebook](https://colab.research.google.com/drive/1IFFnZra2TNEdUBgR-4ZEw98VaioViEA-#scrollTo=kP0NjNdZYlWM)
 - Code Repository: [Repository Link](https://github.com/madhura276/multi-agent-hyperlocal-catalog-ops)
 - YouTube Video: [Mini Video](https://youtu.be/aSo8J6MCYrc)
-- Presentation Slides: [PPT / Slide Deck](https://d.docs.live.net/4A4307F3E7662310/Desktop/Multi-Agent%20Hyperlocal%20Catalog%20Ops.pptx)
+- Presentation Slides: [PPT / Slide Deck]([https://d.docs.live.net/4A4307F3E7662310/Desktop/Multi-Agent%20Hyperlocal%20Catalog%20Ops.pptx](https://onedrive.live.com/personal/0a1316f767f2bfa4/_layouts/15/Doc.aspx?sourcedoc=%7BF170EC04-F3B2-43F0-B7C4-F0635EC42126%7D&file=Multi-Agent%20Hyperlocal%20Catalog%20Ops.pptx&action=edit&mobileredirect=true)
 - Trained Model Artifact: [oversight-sft-final](https://huggingface.co/spaces/MadhuraMadhu/multi-agent-hyperlocal-catalog-ops/tree/main/trained_models/oversight-sft-final)
 
 ## Problem
