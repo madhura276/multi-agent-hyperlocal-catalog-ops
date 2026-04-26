@@ -257,34 +257,35 @@ Select-Object -ExpandProperty Content
 
 ```text
 multi_agent_hyperlocal_catalog_ops/
-├── __init__.py
-├── client.py
-├── grader.py
-├── inference.py
-├── models.py
-├── openenv.yaml
-├── pyproject.toml
-├── README.md
-├── tasks.py
+├── __init__.py                     # package marker
+├── client.py                       # client utilities for interacting with the environment
+├── grader.py                       # scoring and reward computation logic
+├── inference.py                    # baseline and trained-model evaluation workflow
+├── models.py                       # typed action, observation, and state models
+├── openenv.yaml                    # OpenEnv manifest
+├── pyproject.toml                  # project dependencies and package configuration
+├── README.md                       # main project documentation
+├── tasks.py                        # deterministic benchmark task definitions
 ├── assets/
-│   └── architecture.png
+│   └── architecture.png            # architecture diagram used in docs/blog
 ├── outputs/
 │   └── plots/
-│       ├── training_loss.png
-│       ├── token_accuracy.png
-│       └── score_comparison.png
+│       ├── training_loss.png       # post-training loss plot
+│       ├── token_accuracy.png      # post-training token accuracy plot
+│       └── score_comparison.png    # before-vs-after benchmark comparison plot
 ├── scripts/
-│   ├── eval_compare.py
-│   ├── generate_sft_data.py
-│   └── plot_results.py
+│   ├── eval_compare.py             # evaluation helper script
+│   ├── generate_sft_data.py        # generates SFT data for the oversight agent
+│   └── plot_results.py             # generates result plots for README/blog
 ├── train/
-│   └── train_sft.py
+│   └── train_sft.py                # HF TRL supervised fine-tuning script
 ├── tests/
-│   └── test_environment.py
+│   └── test_environment.py         # environment tests
 └── server/
-    ├── __init__.py
-    ├── app.py
-    └── environment.py
+    ├── __init__.py                 # server package marker
+    ├── app.py                      # FastAPI / OpenEnv HTTP server entrypoint
+    └── environment.py              # main environment implementation
+
 ```
 
 ## Why It Matters
